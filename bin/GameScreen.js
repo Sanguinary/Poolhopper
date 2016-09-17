@@ -18,6 +18,7 @@ app.GameScreen = {
 		//this.npc.graphic.position.x++;
 		//this.npc.move();
 		this.npc.moveAI();
+		//console.log("GameScreen: update");
 	},
 
 	exit: function(){
@@ -26,18 +27,19 @@ app.GameScreen = {
 
 	handleKeys: function(e){
 		//console.log(e.keyCode);
-		if(e.keyCode === 68){
+		if(e.keyCode === 100){
 			//console.log("wut wut wut");
-			this.player.graphic.position.x+=5;
+			this.player.graphic.position.x += this.player.speed;
+			//this.player.graphic.body.rotation += 0.1; 
 		}
-		if(e.keyCode === 83){
-			this.player.graphic.position.y+=5;
+		if(e.keyCode === 115){
+			this.player.graphic.position.y += this.player.speed;
 		}
-		if(e.keyCode === 87){
-			this.player.graphic.position.y-=5;
+		if(e.keyCode === 119){
+			this.player.graphic.position.y -= this.player.speed;
 		}
-		if(e.keyCode === 65){
-			this.player.graphic.position.x-=5;
+		if(e.keyCode === 97){
+			this.player.graphic.position.x -= this.player.speed;
 		}
 	}
 };
