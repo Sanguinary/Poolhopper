@@ -13,8 +13,9 @@ function init(){
         resize();
         renderer = PIXI.autoDetectRenderer(1024, 570, {view:document.getElementById("game")} );
         renderer.backgroundColor = 0x50503E;
+        
         canvas.focus();
-
+        
         app.Game.init(renderer, window, canvas, stage);
 }
 
@@ -73,8 +74,8 @@ function level(w_array, y_array){
     //reset the x
     x = 0;
     //post fence post
-    for(h = 0, hlen = y_array.length; h < hlen; h++){
-        for(i = 0, len = w_array.length; i < len; i++){
+    for(var h = 0, hlen = y_array.length; h < hlen; h++){
+        for( var i = 0, len = w_array.length; i < len; i++){
             //setup the y value
             graphics.drawRect(x, y_array[h][i][0], w_array[i], y_array[h][i][1]);
             x += w_array[i];   
@@ -85,6 +86,8 @@ function level(w_array, y_array){
     
     stage.addChild(graphics);
 }
+
+
 
 
 window.addEventListener('resize', resize, false);
