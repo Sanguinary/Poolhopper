@@ -6,11 +6,14 @@
 	<!--<link rel="stylesheet" href="stylesheet.css">-->
 	<!--<script src="bin/pixi.js" type="text/javascript"></script>-->
 	<script>
+		'use strict'
+		
+		window.addEventListener('load', init);
 		console.log("Game Template Version 0.2");
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/3.0.7/pixi.min.js"></script>
 </head>
-<body onload="init()" style="margin:0px">
+<body style="margin:0px">
 	<canvas id="game" style="padding:0px; margin:0px; position:absolute; max-height:100%; max-width:100%; width:auto; height:auto; overflow:hidden;" width="100px"> Your browser doesn't support this game at all, how strange!</canvas>
 </body>
 </html>
