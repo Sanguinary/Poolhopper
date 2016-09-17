@@ -4,13 +4,10 @@ var app = app || {};
 
 app.GameScreen = {
 
-	testButton: undefined,
-	
-	init: function(){
-		// testButton = new app.Button();
-		//TEST: this.temp = app.Person.makePerson(0xff0000, 0x0040ff, stage);
-
-		console.log("GameScreen: init");
+	init: function(stage){
+		this.testButton = new app.Button(10, 10, 50, 50);
+		console.log(this.testButton);
+		stage.addChild(this.testButton);
 	},
 
 	update: function(){

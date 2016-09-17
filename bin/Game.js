@@ -26,7 +26,7 @@ app.Game = {
 		if(this.nextState != undefined){
 			console.log(this.nextState);
 			console.log(this.stateContainer);
-			this.stateContainer[this.nextState].init();
+			this.stateContainer[this.nextState].init(stage);
 			this.currentState = this.nextState;
 			this.nextState = undefined;
 		}

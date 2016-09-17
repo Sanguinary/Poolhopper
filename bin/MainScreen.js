@@ -4,7 +4,7 @@ var app = app || {};
 
 app.MainScreen = {
 
-	init: function(){
+	init: function(stage){
 		console.log("MainScreen: init");
 	},
 

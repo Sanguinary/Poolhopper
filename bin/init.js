@@ -16,6 +16,7 @@ function init(){
         renderer.backgroundColor = 0x50503E;
         level();
         canvas.focus();
+
         
         app.Game.init(renderer, window, canvas, stage);
 }
