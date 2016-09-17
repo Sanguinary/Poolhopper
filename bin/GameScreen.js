@@ -8,9 +8,6 @@ app.GameScreen = {
 		this.testButton = new app.Button(10, 10, 50, 50);
 		console.log(this.testButton);
 		stage.addChild(this.testButton);
-		console.log("GameScreen: init");
-		//Person();
-		//window.addEventListener("keypress", );
 	},
 
 	update: function(){
