@@ -37,27 +37,6 @@ function resize(){
 	}
 }
 
-//Creates a person
-function makePerson(){
-	var head = new PIXI.Graphics();	
-	var body = new PIXI.Graphics();
-	var personCon = new PIXI.Container();
-
-	head.lineStyle(2, 0x000000);
-	head.beginFill(0xFFFF08, 0.5);
-	head.drawCircle(100, 50, 30);
-	head.endFill();
-
-	body.lineStyle(2, 0x000000);
-	body.beginFill(0xff0000, 0.5);
-	body.drawEllipse(100, 50, 100, 50);
-	body.endFill();
-
-	personCon.addChild(body);
-	personCon.addChild(head);
-	stage.addChild(personCon);
-}
-
 //takes two arrays
 // the w_array is an array of column width values [w1, w2, w3, ...], y_array is 
 //3d array setup as such [[row 1], [row 2], [row3]] and the rows are arrays

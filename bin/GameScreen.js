@@ -9,11 +9,15 @@ app.GameScreen = {
 		//console.log(this.testButton);
 		//stage.addChild(this.testButton);
 		this.player = new app.Player();
+		this.npc = new app.NPC();
 		window.addEventListener("keypress", this.handleKeys.bind(this), true);
 	},
 
 	update: function(){
-		console.log("GameScreen: update");
+		console.log("Game Screen: update");
+		//this.npc.graphic.position.x++;
+		//this.npc.move();
+		this.npc.moveAI();
 	},
 
 	exit: function(){

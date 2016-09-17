@@ -22,7 +22,7 @@ app.Person = {
 		this.personCon.addChild(body);
 		this.personCon.addChild(head);
 		stage.addChild(this.personCon);
-		
+
 		return this.personCon;
 	}
 };
