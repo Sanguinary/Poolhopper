@@ -15,7 +15,7 @@ function init(){
         resize();
         renderer = PIXI.autoDetectRenderer(1024, 570, {view:document.getElementById("game")} );
         renderer.backgroundColor = 0x50503E;
-        //level();
+        level();
         canvas.focus();
         app.Game.init(renderer, window, canvas, stage);
 }
@@ -87,7 +87,11 @@ function level(){
 			[240, 120],
 			[240, 120]
 		]
-        ]
+                ],
+        p_array: [
+                [40, 20, 20, 80], 
+                [80, 20, 20, 80]
+                ]
         };
     
     // set a fill and a line style again and draw a rectangle
@@ -106,6 +110,13 @@ function level(){
         }
         //reset the x
         x = 0;
+    }
+    
+    graphics.lineStyle(2, 0x3472D8, 1);
+    graphics.beginFill(0x3472D8, 1);
+    for(var i = 0, len = app.levelData.p_array.length; i < len; i++){
+        graphics.drawRect(app.levelData.p_array[i][0], app.levelData.p_array[i][1],  app.levelData.p_array[i][2], app.levelData.p_array[i][3]);
+        
     }
     
     stage.addChild(graphics);
