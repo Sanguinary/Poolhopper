@@ -14,7 +14,7 @@ function init(){
         resize();
         renderer = PIXI.autoDetectRenderer(1024, 570, {view:document.getElementById("game")} );
         renderer.backgroundColor = 0x50503E;
-        
+        level();
         canvas.focus();
         
         app.Game.init(renderer, window, canvas, stage);
@@ -63,10 +63,33 @@ function makePerson(){
 //3d array setup as such [[row 1], [row 2], [row3]] and the rows are arrays
 // that contain pairs of y,l values where y is the fixed corner of the 
 //rectangle and L is the height of the rectangle.
-function level(w_array, y_array){
+function level(){
     
     // drawRect( xstart, ystart, x size side, y size side)
-
+    app.levelData = {
+	w_array: [120, 120, 120, 120],
+	y_array: [
+		[
+			[0, 120],
+			[0, 120],
+			[0, 120],
+			[0, 120]
+		],
+		[
+			[120, 120],
+			[120, 120],
+			[120, 120],
+			[120, 120]
+		],
+		[
+			[240, 120],
+			[240, 120],
+			[240, 120],
+			[240, 120]
+		]
+        ]
+        };
+    
     // set a fill and a line style again and draw a rectangle
     graphics.lineStyle(2, 0x995702, 1);
     graphics.beginFill(0x71FF33, 1);
@@ -75,11 +98,11 @@ function level(w_array, y_array){
     //reset the x
     x = 0;
     //post fence post
-    for(var h = 0, hlen = y_array.length; h < hlen; h++){
-        for( var i = 0, len = w_array.length; i < len; i++){
+    for(var h = 0, hlen = app.levelData.y_array.length; h < hlen; h++){
+        for( var i = 0, len = app.levelData.w_array.length; i < len; i++){
             //setup the y value
-            graphics.drawRect(x, y_array[h][i][0], w_array[i], y_array[h][i][1]);
-            x += w_array[i];   
+            graphics.drawRect(x, app.levelData.y_array[h][i][0], app.levelData.w_array[i], app.levelData.y_array[h][i][1]);
+            x += app.levelData.w_array[i];   
         }
         //reset the x
         x = 0;
@@ -88,7 +111,17 @@ function level(w_array, y_array){
     stage.addChild(graphics);
 }
 
-
+// Reads in a JSON object with data
+function readJSONFile( filePath ){
+    $.getJSON( filePath, function(){} )
+        .done( function( data ){
+                console.log( "SUCCESS: File read from " + filePath );
+                app.levelData = data;
+        } )
+        .fail( function( ){
+                console.log( "FAILED: File at " + filePath );
+        } );
+}
 
 
 window.addEventListener('resize', resize, false);
