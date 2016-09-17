@@ -56,10 +56,12 @@ function makePerson(){
 	stage.addChild(personCon);
 }
 
+//takes two arrays
+// the w_array is an array of column width values [w1, w2, w3, ...], y_array is 
+//3d array setup as such [[row 1], [row 2], [row3]] and the rows are arrays
+// that contain pairs of y,l values where y is the fixed corner of the 
+//rectangle and L is the height of the rectangle.
 function level(w_array, y_array){
-    
-    
-
     
     // drawRect( xstart, ystart, x size side, y size side)
 
