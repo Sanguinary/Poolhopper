@@ -14,7 +14,6 @@ function init(){
         renderer = PIXI.autoDetectRenderer(1024, 570, {view:document.getElementById("game")} );
         renderer.backgroundColor = 0x50503E;
         canvas.focus();
-
         app.Game.init(renderer, window, canvas, stage);
 }
 

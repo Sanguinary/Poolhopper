@@ -4,11 +4,13 @@ var app = app || {};
 
 app.GameScreen = {
 
-	testButton: undefined,
-
-	init: function(){
-		// testButton = new app.Button();
+	init: function(stage){
+		this.testButton = new app.Button(10, 10, 50, 50);
+		console.log(this.testButton);
+		stage.addChild(this.testButton);
 		console.log("GameScreen: init");
+		//Person();
+		//window.addEventListener("keypress", );
 	},
 
 	update: function(){
