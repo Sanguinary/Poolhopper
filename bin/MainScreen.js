@@ -9,6 +9,7 @@ app.MainScreen = {
 	},
 
 	update: function(){
+		app.Game.changeState("GAME_SCREEN");
 		console.log("MainScreen: update");
 	},
 

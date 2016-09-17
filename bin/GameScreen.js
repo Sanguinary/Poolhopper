@@ -4,7 +4,10 @@ var app = app || {};
 
 app.GameScreen = {
 
+	testButton: undefined,
+
 	init: function(){
+		// testButton = new app.Button();
 		console.log("GameScreen: init");
 	},
 
