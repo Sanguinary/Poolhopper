@@ -1,17 +1,20 @@
-
+'use strict'
 
 //Globals will be the stage which is the parrent of all graphics, canvas object for resizing and the renderer which is pixi.js framebuffer.
 var stage = new PIXI.Container();;
 var canvas = document.getElementById("game");;
 var renderer = PIXI.autoDetectRenderer(1024, 570, {view:document.getElementById("game")} );
 
+// Create or grab the application
+var app = app || {};
+
 function init(){
         resize();
         renderer = PIXI.autoDetectRenderer(1024, 570, {view:document.getElementById("game")} );
         renderer.backgroundColor = 0x50503E;
         canvas.focus();
-        //setup();
-        update();
+
+        app.Game.init(renderer, window, canvas, stage);
 }
 
 function resize(){
@@ -29,12 +32,6 @@ function resize(){
 		canvas.style.width = 1000 * optimalRatio + "px";
 		canvas.style.height = 500 * optimalRatio + "px";
 	}
-}
-
-// Main Game loop.
-function update(){
-	renderer.render(stage);
-	requestAnimationFrame(update);
 }
 
 window.addEventListener('resize', resize, false);
