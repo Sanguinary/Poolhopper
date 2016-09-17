@@ -87,11 +87,11 @@ function level(){
 			[240, 120],
 			[240, 120]
 		]
-                ],
-        p_array: [
-                [40, 20, 20, 80], 
-                [80, 20, 20, 80]
-                ]
+	],
+	p_array: [
+		[40, 20, 20, 80],
+		[80, 20, 20, 80]
+	]
         };
     
     // set a fill and a line style again and draw a rectangle
