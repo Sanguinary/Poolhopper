@@ -11,13 +11,12 @@ var graphics = new PIXI.Graphics();
 var app = app || {};
 
 function init(){
+	
         resize();
         renderer = PIXI.autoDetectRenderer(1024, 570, {view:document.getElementById("game")} );
         renderer.backgroundColor = 0x50503E;
-        
-        canvas.focus();
-
-        
+    
+        canvas.focus();        
         app.Game.init(renderer, window, canvas, stage);
 }
 

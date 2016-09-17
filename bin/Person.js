@@ -7,7 +7,7 @@ app.Person = {
 	makePerson: function(headColor, bodyColor, stage){
 		var head = new PIXI.Graphics();	
 		var body = new PIXI.Graphics();
-		var personCon = new PIXI.Container();
+		this.personCon = new PIXI.Container();
 
 	//console.log("1");
 		head.lineStyle(2, 0x000000);
@@ -22,9 +22,11 @@ app.Person = {
 		body.endFill();
 
 	//console.log("3");
-		personCon.addChild(body);
-		personCon.addChild(head);
-		stage.addChild(personCon);
+		this.personCon.addChild(body);
+		this.personCon.addChild(head);
+		stage.addChild(this.personCon);
 	//console.log("4");
+
+		return this.personCon;
 	}
 };
