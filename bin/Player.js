@@ -6,8 +6,10 @@ app.Player = function(){
 
 	function Player(){
 
+		this.health = 100;
+		this.currentHealth = 100;
 		this.graphic = app.Person.makePerson(0xffeecc, 0xffeecc, stage);
-		this.speed = 5;
+		this.speed = 4;
 		this.inWater = false;
 		this.inAir = false;
 		this.v = 1;
