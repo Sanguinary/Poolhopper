@@ -52,7 +52,7 @@ app.GameScreen = {
 		//this.npc.move();
 		//console.log("GameScreen: update");
                 if(this.poolHitCheck()){
-                    //console.log("hit");
+                    console.log("hit");
                     if(!this.player.isWater){
                         this.player.isWater = true;
                     }
@@ -95,9 +95,7 @@ app.GameScreen = {
         this.score += value;
         this.scoreText.text = "Score:" + this.score;
     },
-    modScore: function(){
-        console.log("");
-    },
+    
 
 	movePlayer: function(){
 
@@ -195,6 +193,7 @@ app.GameScreen = {
         poolHitCheck: function(){
             app.poolData = {
                 p_array: [
+                    [50,50,50,50],
                     [50,450,50,50],
                 [920,50,50,50],
                 [920,450,50,50],
