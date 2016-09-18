@@ -10,19 +10,31 @@ app.GameScreen = {
 		//console.log(this.testButton);
 		//stage.addChild(this.testButton);
 		this.player = new app.Player();
-		this.npc = new app.NPC();
+		app.people = [];
+
+		//Create array of npcs
+		for(var i = 0; i < 5; i++){
+			app.people.push(new app.NPC());
+			app.people[i].graphic.position.y += i*100;
+		}
+		//this.npc = new app.NPC();
 		window.addEventListener("keydown", this.handleKeysDown.bind(this), true);
 		window.addEventListener("keyup", this.handleKeysUp.bind(this), true);
                 this.g = new PIXI.Rectangle(40,40,100,100);
             
 	},
 
+
 	update: function(){
 		console.log("Game Screen: update");
+		
+		//Ai movement
+		for(var i = 0; i < app.people.length; i++){
+			app.people[i].moveAI(this.player.graphic.position.x, this.player.graphic.position.y);
+		}
+		this.movePlayer();
 		//this.npc.graphic.position.x++;
 		//this.npc.move();
-		this.movePlayer();
-		this.npc.moveAI();
 		//console.log("GameScreen: update");
                 if(app.HitDetection.HIT(this.player.graphic , this.g))
                     console.log("hit");
@@ -33,7 +45,7 @@ app.GameScreen = {
 	exit: function(){
 		console.log("GameScreen: exit");
 	},
-
+	
 	movePlayer: function(){
 
 		if(app.Game.keyboard["W"]){
