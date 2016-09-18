@@ -1,7 +1,7 @@
 'use strict'
 
 var app = app || {};
-
+var graphics = new PIXI.Graphics();
 app.GameScreen = {
 
 	init: function(stage){
@@ -17,7 +17,9 @@ app.GameScreen = {
 			app.people[i].graphic.position.y += i*100;
 		}
 		//this.npc = new app.NPC();
-		window.addEventListener("keypress", this.handleKeys.bind(this), true);
+		window.addEventListener("keydown", this.handleKeysDown.bind(this), true);
+		window.addEventListener("keyup", this.handleKeysUp.bind(this), true);
+                this.g =graphics.drawRect(40,40,40,40);
 	},
 
 
@@ -28,27 +30,47 @@ app.GameScreen = {
 		for(var i = 0; i < app.people.length; i++){
 			app.people[i].moveAI(this.player.graphic.position.x, this.player.graphic.position.y);
 		}
+		//this.npc.graphic.position.x++;
+		//this.npc.move();
+		//console.log("GameScreen: update");
+                if(app.HitDetection.Hit(this.player.graphic , this.g));
+                    console.log("hit");
 	},
 
 	exit: function(){
 		console.log("GameScreen: exit");
 	},
 
-	handleKeys: function(e){
-		console.log(e.keyCode);
-		if(e.keyCode === 100){
-			//console.log("wut wut wut");
-			this.player.graphic.position.x += this.player.speed;
-			//this.player.graphic.body.rotation += 0.1; 
+	
+	handleKeysDown: function(e){
+		//console.log(e.keyCode);
+		if(e.keyCode === 87){
+			app.Game.keyboard["W"] = true;
 		}
-		if(e.keyCode === 115){
-			this.player.graphic.position.y += this.player.speed;
+		if(e.keyCode === 83){
+			app.Game.keyboard["S"] = true;
 		}
-		if(e.keyCode === 119){
-			this.player.graphic.position.y -= this.player.speed;
+		if(e.keyCode === 68){
+			app.Game.keyboard["D"] = true;
 		}
-		if(e.keyCode === 97){
-			this.player.graphic.position.x -= this.player.speed;
+		if(e.keyCode === 65){
+			app.Game.keyboard["A"] = true;
+		}
+	},
+
+	handleKeysUp: function(e){
+		//console.log(e.keyCode);
+		if(e.keyCode === 87){
+			app.Game.keyboard["W"] = false;
+		}
+		if(e.keyCode === 83){
+			app.Game.keyboard["S"] = false;
+		}
+		if(e.keyCode === 68){
+			app.Game.keyboard["D"] = false;
+		}
+		if(e.keyCode === 65){
+			app.Game.keyboard["A"] = false;
 		}
 	}
 };
