@@ -22,7 +22,8 @@ app.Game = {
 			"W":false,
 			"S":false,
 			"D":false,
-			"A":false
+			"A":false,
+			"SPACE":false
 		};
 
 		// Start main loop
