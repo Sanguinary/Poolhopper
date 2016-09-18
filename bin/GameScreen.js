@@ -21,6 +21,9 @@ app.GameScreen = {
 		window.addEventListener("keydown", this.handleKeysDown.bind(this), true);
 		window.addEventListener("keyup", this.handleKeysUp.bind(this), true);
                 this.g = new PIXI.Rectangle(40,40,100,100);
+                this.walls = [];
+                this.wallBuilder();
+                //console.log(this.walls[0].x);
             
 	},
 
@@ -40,6 +43,17 @@ app.GameScreen = {
                     console.log("hit");
                 else
                     console.log("not hit");
+                if(this.peopleHitCheck()){
+                    console.log("HIT BY PEOPLE");
+                } else {
+                    console.log("not hit");
+                }
+                
+                if(this.wallHitCheck(this.walls)){
+                    console.log("HIT BY walls");
+                } else {
+                    console.log("not hit");
+                }
 	},
 
 	exit: function(){
@@ -158,7 +172,80 @@ app.GameScreen = {
                    return true;
             }
             return b;
-        }
+        },
+        
+        peopleHitCheck: function(){
+             
+            var b = false;
+            for(var i = 0, len = app.people.length; i < len; i++){
+                
+               if(app.HitDetection.HIT(this.player.graphic, app.people[i].graphic))
+                   return true;
+            }
+            return b;
+        },
+        
+        wallBuilder: function(){
+            app.wallData = {
+                w_array: [120, 120, 120, 120],
+                y_array: [
+                    [
+                            [0, 120],
+                            [0, 120],
+                            [0, 120],
+                            [0, 120]
+                    ],
+                    [
+                            [120, 120],
+                            [120, 120],
+                            [120, 120],
+                            [120, 120]
+                    ],
+                    [
+                            [240, 120],
+                            [240, 120],
+                            [240, 120],
+                            [240, 120]
+                    ]
+            ]
+
+            };
+            
+            //build horizontal walls
+            
+            var x = 0;
+            for(var i = 0, len = app.wallData.y_array.length; i < len ; i++){
+                for(var j = 0, len2 = app.wallData.w_array.length; j < len2; j++){
+                    
+                    this.walls.push(new PIXI.Rectangle(x, app.wallData.y_array[i][j][0], app.wallData.w_array[j]),  2);
+                    x = x + app.wallData.w_array[j];
+                }
+            }
+            
+            //build verticle walls
+            var x = 0;
+            for(var i = 0, len = app.wallData.w_array.length; i < len ; i++){
+                for(var j = 0, len2 = app.wallData.y_array.length; j < len2; j++){
+                    this.walls.push(new PIXI.Rectangle(x, app.wallData.y_array[j][i][0], app.wallData.y_array[j][i][1], 2));
+                    x = x + app.wallData.w_array[j];
+                }
+            }
+                
+               
+            
+            
+        },
+        
+        wallHitCheck: function(theWalls){
+            var b = false;
+            
+            for(var i = 0, len = theWalls.length; i < len; i++){
+                //console.log(this.walls);
+               if(app.HitDetection.HIT(this.player.graphic, theWalls[i]))
+                   return true;
+            }
+            return b;
+	},
 
 		
 
