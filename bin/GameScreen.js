@@ -1,7 +1,8 @@
 'use strict'
 
 var app = app || {};
-var graphics = new PIXI.Graphics();
+
+
 app.GameScreen = {
 
 	init: function(stage){
@@ -12,7 +13,13 @@ app.GameScreen = {
 		this.npc = new app.NPC();
 		window.addEventListener("keydown", this.handleKeysDown.bind(this), true);
 		window.addEventListener("keyup", this.handleKeysUp.bind(this), true);
-                this.g =graphics.drawRect(40,40,40,40);
+                this.g = new PIXI.Rectangle(40,40,100,100);
+                /*
+                this.g.poolX = 40;
+                this.g.poolY = 40;
+                this.g.poolWidth = 10;
+                this.g.poolHeight = 100;
+                */
 	},
 
 	update: function(){
@@ -22,8 +29,10 @@ app.GameScreen = {
 		this.movePlayer();
 		this.npc.moveAI();
 		//console.log("GameScreen: update");
-                if(app.HitDetection.Hit(this.player.graphic , this.g));
+                if(app.HitDetection.HIT(this.player.graphic , this.g))
                     console.log("hit");
+                else
+                    console.log("not hit");
 	},
 
 	exit: function(){
