@@ -168,38 +168,15 @@ app.GameScreen = {
 		}
         if(e.keyCode === 32){
 			app.Game.keyboard["SPACE"] = false;
+		}		
+	}
 		}
 	},
         
         poolHitCheck: function(){
             app.poolData = {
                 p_array: [
-                    [40, 20, 20, 80],
-                    [80, 20, 20, 80],
-                    [40, 40, 60, 20],
-                    [160, 20, 20, 80],
-                    [160, 55, 60, 15],
-                    [160, 20, 60, 15],
-                    [160, 90, 60, 15],
-                    [280, 20, 20, 80],
-                    [280, 90, 60, 15],
-                    [400, 20, 20, 80],
-                    [400, 90, 60, 15],
-                    [400, 140, 20, 80],
-                    [400, 210, 60, 15],
-                    [280, 210, 60, 15],
-                    [280, 130, 60, 15],
-                    [280, 130, 20, 80],
-                    [320, 130, 20, 80],
-                    [160, 210, 60, 15],
-                    [160, 130, 60, 15],
-                    [160, 130, 20, 80],
-                    [200, 130, 20, 80],
-                    [40, 140, 20, 80],
-                    [60, 140, 40, 40],
-                    [280, 290, 30, 30],
-                    [160, 290, 30, 30],
-                    [40, 290, 30, 30],
+                    [50,50,50,50],
                 ]
             };       
             var b = false;
@@ -224,27 +201,41 @@ app.GameScreen = {
         
         wallBuilder: function(){
             app.wallData = {
-                w_array: [120, 120, 120, 120],
+                w_array: [102 * 2, 102 * 2, 102 * 2, 102 * 2, 102 * 2],
                 y_array: [
                     [
-                            [0, 120],
-                            [0, 120],
-                            [0, 120],
-                            [0, 120]
+                            [0 * 2, 90 * 2],
+                            [0 * 2, 90 * 2],
+                            [0 * 2, 90 * 2],
+                            [0 * 2, 90 * 2],
+                            [0 * 2, 90 * 2],
                     ],
                     [
-                            [120, 120],
-                            [120, 120],
-                            [120, 120],
-                            [120, 120]
+                            [90 * 2, 90 * 2],
+                            [90 * 2, 90 * 2],
+                            [90 * 2, 90 * 2],
+                            [90 * 2, 90 * 2],
+                            [90 * 2, 90 * 2],
                     ],
                     [
-                            [240, 120],
-                            [240, 120],
-                            [240, 120],
-                            [240, 120]
+                            [180 * 2, 90 * 2],
+                            [180 * 2, 90 * 2],
+                            [180 * 2, 90 * 2],
+                            [180 * 2, 90 * 2],
+                            [180 * 2, 90 * 2],
+                    ], 
+                    [
+                            [270 * 2, 90 * 2],
+                            [270 * 2, 90 * 2],
+                            [270 * 2, 90 * 2],
+                            [270 * 2, 90 * 2],
+                            [270 * 2, 90 * 2],
+
+
+
                     ]
-            ]
+                ],
+            
 
             };
             
@@ -257,15 +248,17 @@ app.GameScreen = {
                     this.walls.push(new PIXI.Rectangle(x, app.wallData.y_array[i][j][0], app.wallData.w_array[j]),  2);
                     x = x + app.wallData.w_array[j];
                 }
+                x = 0;
             }
             
             //build verticle walls
             var x = 0;
-            for(var i = 0, len = app.wallData.w_array.length; i < len ; i++){
-                for(var j = 0, len2 = app.wallData.y_array.length; j < len2; j++){
-                    this.walls.push(new PIXI.Rectangle(x, app.wallData.y_array[j][i][0], app.wallData.y_array[j][i][1], 2));
+            for(var i = 0, len = app.wallData.y_array.length; i < len ; i++){
+                for(var j = 0, len2 = app.wallData.w_array.length; j < len2; j++){
+                    this.walls.push(new PIXI.Rectangle(x, app.wallData.y_array[i][j][0], 2, app.wallData.y_array[i][j][1]));
                     x = x + app.wallData.w_array[j];
                 }
+                x = 0;
             }
                 
                

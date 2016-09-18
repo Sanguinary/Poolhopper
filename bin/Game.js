@@ -14,6 +14,7 @@ app.Game = {
 
 		this.addState("MAIN_SCREEN", app.MainScreen);
 		this.addState("GAME_SCREEN", app.GameScreen);
+		this.addState("GAME_OVER_SCREEN", app.GameOver);
 
 		this.currentState = undefined;
 		this.nextState = "MAIN_SCREEN";
