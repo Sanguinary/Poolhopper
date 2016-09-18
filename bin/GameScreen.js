@@ -135,7 +135,7 @@ app.GameScreen = {
 		}
 
         if(this.player.inWater){
-            this.player.speed = 2;
+            this.player.speed = 1.5;
         }else{
             this.player.speed = 4;
         }
@@ -223,7 +223,10 @@ app.GameScreen = {
                     [50,50,50,50],
                     [50,450,50,50],
                     [920,50,50,50],
-                    [920,450,50,50],
+                    [920,450,50,50],                    
+                    [500,400,100,60],
+                    [680,200,200,80],
+                    [180,200,180,50]
                 ]
             };       
             var b = false;
@@ -366,12 +369,15 @@ app.GameScreen = {
             
             ]
         ],
-	p_array: [
-		[50,50,50,50],
+	    p_array: [
+		        [50,50,50,50],
                 [50,450,50,50],
                 [920,50,50,50],
                 [920,450,50,50],
-	]
+                [500,400,100,60],
+                [680,200,200,80],
+                [180,200,180,50]
+	    ]
         };
     
     // set a fill and a line style again and draw a rectangle
