@@ -75,10 +75,10 @@ app.GameScreen = {
 	
     modHealth: function(){
         console.log("");
-    }
+    },
     modScore: function(){
         console.log("");
-    }
+    },
 
 	movePlayer: function(){
 
