@@ -11,7 +11,14 @@ app.GameOver = {
 		stage.addChild(text);
 
 		this.testButton = new app.Button(300, 200, 50, 50, "Restart?");
-		stage.addChild(this.testButton);		
+		stage.addChild(this.testButton);
+				//Restarting
+		this.testButton.mousedown = function(mouseData){			
+			//for (var i = stage.children.length - 1; i >= 0; i--) {	stage.removeChild(stage.children[i]);
+                    //}
+                    
+			app.Game.changeState("GAME_SCREEN");
+                }
 	},
 
 	update: function(){
@@ -19,9 +26,9 @@ app.GameOver = {
 	},
 
 	exit: function(){
-		for (var i = stage.children.length - 1; i >= 0; i--) {	
-			stage.removeChild(stage.children[i]);
-        }
+		//for (var i = stage.children.length - 1; i >= 0; i--) {	
+			//stage.removeChild(stage.children[i]);
+        //}
 		console.log("GameOver: exit");
 	},
 };

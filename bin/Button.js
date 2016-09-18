@@ -29,10 +29,10 @@ app.Button = function(){
 		this.interactive = true;
 		this.buttonMode = true;
 		//Restarting
-		this.mousedown = function(mouseData){			
-			for (var i = stage.children.length - 1; i >= 0; i--) {	stage.removeChild(stage.children[i]);
-                    }
-                }
+		//this.mousedown = function(mouseData){			
+			//for (var i = stage.children.length - 1; i >= 0; i--) {	stage.removeChild(stage.children[i]);
+                   // }
+               // }
 	};
 
 	Button.prototype = Object.create(PIXI.Graphics.prototype);
