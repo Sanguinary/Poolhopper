@@ -11,7 +11,7 @@ app.NPC = function(){
 	NPC.prototype = Object.create(NPC.prototype);
 	NPC.prototype.constructor = NPC;
 
-	NPC.prototype.moveAI = function(x, y, people){
+	NPC.prototype.moveAI = function(x, y, people, w){
                 var dx = 0;
                 var dy = 0;
 		if(this.graphic.position.x < x){
@@ -30,6 +30,26 @@ app.NPC = function(){
                     this.graphic.position.y--
                     dy = -1;
                 }
+                //wall collision detector
+                for(var i = 0, len = w.length; i < len; i ++){
+                    if(app.HitDetection.HIT(this.graphic, w[i])){
+                        if(dy > 0){
+                            this.graphic.position.y--;
+                        }
+                        
+                        if(dy < 0){
+                            this.graphic.position.y++;
+                        }
+                        
+                        if(dx > 0)
+                            this.graphic.position.x--;
+                        
+                        if(dx < 0)
+                            this.graphic.position.x++;
+                        console.log("I WAS HIT BY A WALL");
+                        return;
+                    }
+                }
                 
                 //collision detection algorithm
                 for(var i = 0, len = people.length; i < len; i ++){
@@ -42,6 +62,8 @@ app.NPC = function(){
                         console.log("COLLISION OF ENEMY");
                     }
                 }
+                
+                
 	}
 
 	return NPC;

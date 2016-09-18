@@ -45,7 +45,7 @@ app.GameScreen = {
 		//console.log("Game Screen: update");
 		//Ai movement
 		for(var i = 0; i < app.people.length; i++){
-			app.people[i].moveAI(this.player.graphic.position.x, this.player.graphic.position.y, app.people);
+			app.people[i].moveAI(this.player.graphic.position.x, this.player.graphic.position.y, app.people, this.walls);
 		}
 		this.movePlayer();
 		//this.npc.graphic.position.x++;

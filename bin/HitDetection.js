@@ -6,8 +6,9 @@ app.HitDetection = {
 
 	HIT: function(player, other){
                 //prevents players from not moving due to self collision
-		 if(player === other)
+		 if(player === other){
                      return false;
+                 }
                  
                  if (player.position.x < other.x + other.width &&
                     player.position.x + player.width > other.x &&
