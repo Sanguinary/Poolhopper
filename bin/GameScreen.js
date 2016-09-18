@@ -24,7 +24,7 @@ app.GameScreen = {
 		this.movePlayer();
 		this.npc.moveAI();
 		//console.log("GameScreen: update");
-                if(app.HitDetection.HIT(this.player.graphic , this.g))
+                if(this.poolHitCheck())
                     console.log("hit");
                 else
                     console.log("not hit");
@@ -80,5 +80,45 @@ app.GameScreen = {
 		if(e.keyCode === 65){
 			app.Game.keyboard["A"] = false;
 		}
-	}
+	},
+        
+        poolHitCheck: function(){
+            app.poolData = {
+                p_array: [
+                    [40, 20, 20, 80],
+                    [80, 20, 20, 80],
+                    [40, 40, 60, 20],
+                    [160, 20, 20, 80],
+                    [160, 55, 60, 15],
+                    [160, 20, 60, 15],
+                    [160, 90, 60, 15],
+                    [280, 20, 20, 80],
+                    [280, 90, 60, 15],
+                    [400, 20, 20, 80],
+                    [400, 90, 60, 15],
+                    [400, 140, 20, 80],
+                    [400, 210, 60, 15],
+                    [280, 210, 60, 15],
+                    [280, 130, 60, 15],
+                    [280, 130, 20, 80],
+                    [320, 130, 20, 80],
+                    [160, 210, 60, 15],
+                    [160, 130, 60, 15],
+                    [160, 130, 20, 80],
+                    [200, 130, 20, 80],
+                    [40, 140, 20, 80],
+                    [60, 140, 40, 40],
+                    [280, 290, 30, 30],
+                    [160, 290, 30, 30],
+                    [40, 290, 30, 30],
+                ]
+            };       
+            var b = false;
+            for(var i = 0, len = app.poolData.p_array.length; i < len; i++){
+                this.g = new PIXI.Rectangle(app.poolData.p_array[i][0],app.poolData.p_array[i][1],app.poolData.p_array[i][2],app.poolData.p_array[i][3]);
+               if(app.HitDetection.HIT(this.player.graphic, this.g))
+                   return true;
+            }
+            return b;
+        }
 };
