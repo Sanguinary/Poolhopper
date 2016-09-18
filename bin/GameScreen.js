@@ -20,17 +20,20 @@ app.GameScreen = {
 		//this.npc = new app.NPC();
 		window.addEventListener("keydown", this.handleKeysDown.bind(this), true);
 		window.addEventListener("keyup", this.handleKeysUp.bind(this), true);
-                this.g = new PIXI.Rectangle(40,40,100,100);
-                this.walls = [];
-                this.wallBuilder();
-                //console.log(this.walls[0].x);
-            
+        this.g = new PIXI.Rectangle(40,40,100,100);
+
+        this.walls = [];
+        this.wallBuilder();
+
+        this.score = 0;
+        this.scoreText = new PIXI.Text("Score:" + this.score, {font:"50px Arial", fill:"red"});
+        this.scoreText.position.y = 20;
+        stage.addChild(this.scoreText);
+        //console.log(this.walls[0].x);    
 	},
 
-
 	update: function(){
-		console.log("Game Screen: update");
-		
+		//console.log("Game Screen: update");
 		//Ai movement
 		for(var i = 0; i < app.people.length; i++){
 			app.people[i].moveAI(this.player.graphic.position.x, this.player.graphic.position.y);
@@ -39,27 +42,44 @@ app.GameScreen = {
 		//this.npc.graphic.position.x++;
 		//this.npc.move();
 		//console.log("GameScreen: update");
-                if(this.poolHitCheck())
-                    console.log("hit");
-                else
-                    console.log("not hit");
+                if(this.poolHitCheck()){
+                    //console.log("hit");
+                    if(!this.player.isWater){
+                        this.player.isWater = true;
+                    }
+                }else{
+                    if(this.player.isWater){
+                        this.player.isWater = false;
+                    }
+                    //console.log("not hit");
+                }
+
                 if(this.peopleHitCheck()){
-                    console.log("HIT BY PEOPLE");
-                } else {
+                    this.player.currentHealth -= 25;
+                    console.log("Health removes: -" + 25);
+                    //console.log("HIT BY PEOPLE");
+                } /*else {
                     console.log("not hit");
                 }
                 
                 if(this.wallHitCheck(this.walls)){
                     console.log("HIT BY walls");
                 } else {
-                    console.log("not hit");
-                }
+                    //console.log("not hit");
+                }*/
 	},
 
 	exit: function(){
 		console.log("GameScreen: exit");
 	},
 	
+    modHealth: function(){
+        console.log("");
+    }
+    modScore: function(){
+        console.log("");
+    }
+
 	movePlayer: function(){
 
 		if(app.Game.keyboard["W"]){
@@ -107,8 +127,9 @@ app.GameScreen = {
 				this.player.isAir = true;
 				this.player.v = 0;
 				this.player.t1 = this.player.t2 = 0;
-				console.log("JUMPING!");
+				//console.log("JUMPING!");
 			}
+            this.player.t2++;
 		}
 	},
 
@@ -145,7 +166,7 @@ app.GameScreen = {
 		if(e.keyCode === 65){
 			app.Game.keyboard["A"] = false;
 		}
-                if(e.keyCode === 32){
+        if(e.keyCode === 32){
 			app.Game.keyboard["SPACE"] = false;
 		}		
 	},
