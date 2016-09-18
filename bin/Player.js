@@ -12,7 +12,7 @@ app.Player = function(){
 		this.speed = 4;
 		this.inWater = false;
 		this.inAir = false;
-		this.v = 1;
+		this.v = 0;
 		this.t1;
 		this.t2;
 		this.MAX = 0.3;
