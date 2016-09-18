@@ -18,6 +18,13 @@ app.Game = {
 		this.currentState = undefined;
 		this.nextState = "MAIN_SCREEN";
 
+		this.keyboard = {
+			"W":false,
+			"S":false,
+			"D":false,
+			"A":false
+		};
+
 		// Start main loop
 		this.update();
 	},
