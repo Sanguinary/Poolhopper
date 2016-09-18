@@ -45,14 +45,14 @@ app.GameScreen = {
 		//console.log("Game Screen: update");
 		//Ai movement
 		for(var i = 0; i < app.people.length; i++){
-			app.people[i].moveAI(this.player.graphic.position.x, this.player.graphic.position.y);
+			app.people[i].moveAI(this.player.graphic.position.x, this.player.graphic.position.y, app.people);
 		}
 		this.movePlayer();
 		//this.npc.graphic.position.x++;
 		//this.npc.move();
 		//console.log("GameScreen: update");
                 if(this.poolHitCheck()){
-                    //console.log("hit");
+                    console.log("hit");
                     if(!this.player.isWater){
                         this.player.isWater = true;
                     }
@@ -212,9 +212,10 @@ app.GameScreen = {
         poolHitCheck: function(){
             app.poolData = {
                 p_array: [
+                    [50,50,50,50],
                     [50,450,50,50],
-                [920,50,50,50],
-                [920,450,50,50],
+                    [920,50,50,50],
+                    [920,450,50,50],
                 ]
             };       
             var b = false;
