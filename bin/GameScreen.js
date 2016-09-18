@@ -77,14 +77,12 @@ app.GameScreen = {
                     console.log("HIT BY walls  " + this.player.v);
                     if(app.Game.keyboard["D"]){
                         this.player.graphic.position.x-=6;
-                    }
-                    if(app.Game.keyboard["A"]){
+                    } else if(app.Game.keyboard["A"]){
                         this.player.graphic.position.x+=6;
                     }
                     if(app.Game.keyboard["S"]){
                         this.player.graphic.position.y-=6;
-                    }
-                    if(app.Game.keyboard["W"]){
+                    }else if(app.Game.keyboard["W"]){
                         this.player.graphic.position.y+=6;
                     }
                 } 
