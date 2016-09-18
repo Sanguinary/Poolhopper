@@ -6,7 +6,7 @@ var graphics = new PIXI.Graphics();
 app.GameScreen = {
 
 	init: function(stage){
-            this.level();
+        this.level();
 		this.testButton = new app.Button(10, 10, 50, 50);
 		//console.log(this.testButton);
 		//stage.addChild(this.testButton);
@@ -73,17 +73,17 @@ app.GameScreen = {
 
                 if(this.poolHitCheck()){
                     //console.log("hit");
-                    if(!this.player.isWater){
+                    //if(!this.player.isWater){
                         this.player.inWater = true;
                         //this.player.speed = 1.9;
                         //console.log(this.player.speed);
-                    }
+                    //}
                     this.modScore(20);
                 }else{
-                    if(this.player.isWater){
+                    //if(this.player.isWater){
                         this.player.inWater = false;
                         //this.player.speed = 4;
-                    }
+                    //}
                     //console.log("not hit");
                 }
 
