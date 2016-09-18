@@ -176,7 +176,9 @@ app.GameScreen = {
         poolHitCheck: function(){
             app.poolData = {
                 p_array: [
-                    [50,50,50,50],
+                    [50,450,50,50],
+                [920,50,50,50],
+                [920,450,50,50],
                 ]
             };       
             var b = false;
