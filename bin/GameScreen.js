@@ -17,17 +17,28 @@ app.GameScreen = {
 		app.people = [];
 
 		//Create array of npcs
-		for(var i = 0; i < 5; i++){
+		for(var i = 0; i < 15; i++){
 			app.people.push(new app.NPC());
-			app.people[i].graphic.position.y += i*100;
-                        app.people[i].graphic.position.x += 10;
+            if(i < 5){
+
+    			app.people[i].graphic.position.y += i*100;
+                app.people[i].graphic.position.x += 10;
+            }else if(i < 10){
+
+                app.people[i].graphic.position.y += (i-4)*100;
+                app.people[i].graphic.position.x += 900;
+            }
 		}
+        //Hardcoding some guys for the other pool areas.
+        app.people[10].graphic.position.y = 420;
+        app.people[10].graphic.position.x = 520;
                 
-                for(var i = 5; i < 10; i++){
-			app.people.push(new app.NPC());
-			app.people[i].graphic.position.y += (i-4)*100;
-                        app.people[i].graphic.position.x += 900;
-		}
+        app.people[11].graphic.position.y = 220;
+        app.people[11].graphic.position.x = 720;
+
+        app.people[12].graphic.position.y = 220;
+        app.people[12].graphic.position.x = 220;
+
 		//this.npc = new app.NPC();
 		window.addEventListener("keydown", this.handleKeysDown.bind(this), true);
 		window.addEventListener("keyup", this.handleKeysUp.bind(this), true);
