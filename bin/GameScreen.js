@@ -10,6 +10,9 @@ app.GameScreen = {
 		//console.log(this.testButton);
 		//stage.addChild(this.testButton);
 		this.player = new app.Player();
+        this.player.graphic.position.x = 300;
+        this.player.graphic.position.y = 300;
+
 		app.people = [];
 
 		//Create array of npcs
@@ -28,7 +31,13 @@ app.GameScreen = {
         this.score = 0;
         this.scoreText = new PIXI.Text("Score:" + this.score, {font:"50px Arial", fill:"red"});
         this.scoreText.position.y = 20;
+        this.scoreText.position.x = 30
         stage.addChild(this.scoreText);
+
+        this.healthText = new PIXI.Text("100 / " + this.player.currentHealth, {font:"50px Arial", fill:"red"});
+        this.healthText.position.y = 20;
+        this.healthText.position.x = 720;
+        stage.addChild(this.healthText);
         //console.log(this.walls[0].x);    
 	},
 
@@ -47,6 +56,7 @@ app.GameScreen = {
                     if(!this.player.isWater){
                         this.player.isWater = true;
                     }
+                    this.modScore(28);
                 }else{
                     if(this.player.isWater){
                         this.player.isWater = false;
@@ -55,8 +65,9 @@ app.GameScreen = {
                 }
 
                 if(this.peopleHitCheck()){
-                    this.player.currentHealth -= 25;
+                    //this.player.currentHealth -= 25;
                     console.log("Health removes: -" + 25);
+                    this.modHealth(-25);
                     //console.log("HIT BY PEOPLE");
                 } /*else {
                     console.log("not hit");
@@ -73,8 +84,16 @@ app.GameScreen = {
 		console.log("GameScreen: exit");
 	},
 	
-    modHealth: function(){
+    modHealth: function(value){
         console.log("");
+        this.player.currentHealth += value;
+        this.healthText.text = "100 / " + this.player.currentHealth;
+    },
+
+    modScore: function(value){
+        console.log("");
+        this.score += value;
+        this.scoreText.text = "Score:" + this.score;
     },
     modScore: function(){
         console.log("");
@@ -176,7 +195,9 @@ app.GameScreen = {
         poolHitCheck: function(){
             app.poolData = {
                 p_array: [
-                    [50,50,50,50],
+                    [50,450,50,50],
+                [920,50,50,50],
+                [920,450,50,50],
                 ]
             };       
             var b = false;
