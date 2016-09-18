@@ -26,7 +26,7 @@ app.Person = {
 		this.personCon.addChild(head);
 		//this.personCon.anchor.x = 0.5;
 		//this.personCon.anchor.y = 0.5;
-		this.personCon.scale.x = this.personCon.scale.y = 0.28;
+		this.personCon.scale.x = this.personCon.scale.y = 0.29;
 		stage.addChild(this.personCon);
 
 		return this.personCon;

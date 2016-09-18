@@ -70,33 +70,33 @@ app.GameScreen = {
 		//this.npc.graphic.position.x++;
 		//this.npc.move();
 		//console.log("GameScreen: update");
-            
 
                 if(this.poolHitCheck()){
                     //console.log("hit");
                     if(!this.player.isWater){
-                        this.player.isWater = true;
+                        this.player.inWater = true;
+                        //this.player.speed = 1.9;
+                        //console.log(this.player.speed);
                     }
                     this.modScore(20);
                 }else{
                     if(this.player.isWater){
-                        this.player.isWater = false;
+                        this.player.inWater = false;
+                        //this.player.speed = 4;
                     }
                     //console.log("not hit");
                 }
 
-            if(this.player.v <= 0.20){
+            if(this.player.v <= 0.18){
                 if(this.peopleHitCheck()){
                     //this.player.currentHealth -= 25;
                     var r = Math.random();
                     if(r > .91){
                         console.log("Health removes: -" + 25);
                         this.modHealth(-5);
-                }
+                    }
                     //console.log("HIT BY PEOPLE");
-                } /*else {
-                    console.log("not hit");
-                }*/
+                } 
                 
                 if(this.wallHitCheck(this.walls)){
                     console.log("HIT BY walls  " + this.player.v);
@@ -138,23 +138,39 @@ app.GameScreen = {
 
 		if(app.Game.keyboard["W"]){
 
+            if(this.player.inWater){
+                this.player.graphic.position.y -= 2.8; 
+            }else{
 			//console.log("AHHHHH");
-			this.player.graphic.position.y -= this.player.speed;
+    			this.player.graphic.position.y -= this.player.speed;
+            }
 		}else if(app.Game.keyboard["S"]){
 
+            if(this.player.inWater){
+                this.player.graphic.position.y += 2.8; 
+            }else{
 			//console.log("brrrrrr");
-			this.player.graphic.position.y += this.player.speed;
+	   		    this.player.graphic.position.y += this.player.speed;
+            }
 		}
-
 		if(app.Game.keyboard["D"]){
 
-			this.player.graphic.position.x += this.player.speed;
+            if(this.player.inWater){
+                this.player.graphic.position.x += 2.8; 
+            }else{
+    			this.player.graphic.position.x += this.player.speed;
+            }
+            //console.log(this.player.speed);
 		}else if(app.Game.keyboard["A"]){
-
-			this.player.graphic.position.x -= this.player.speed;
+            if(this.player.inWater){
+                this.player.graphic.position.x -= 2.8; 
+            }else{
+    			this.player.graphic.position.x -= this.player.speed;
+            }
 		}
 
         if(this.player.inWater){
+            console.log("water: " + this.player.inWater);
             this.player.speed = 1.5;
         }else{
             this.player.speed = 4;
@@ -173,7 +189,6 @@ app.GameScreen = {
 					this.player.isAir = false;
                     this.player.v = 0;
 				}
-
 			}else{
                 //rising action of jump.
 				this.player.graphic.scale.x = this.player.graphic.scale.y += 0.02;
