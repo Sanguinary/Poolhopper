@@ -7,10 +7,10 @@ app.GameOver = {
 
 	init: function(stage){
 
-		var text = new PIXI.Text('GAME OVER',{fontFamily : 'Arial', fontSize: 24, fill : 0xff1010, align : 'center'});
-		text.anchor = .5;
+		var text = new PIXI.Text('GAME OVER',{fontFamily : 'Arial', fontSize: 72, fill : 0xff1010, align : 'center'});
+		//text.anchor = .5;
 		stage.addChild(text);
-		this.testButton = new app.Button(10, 10, 50, 50);
+		this.testButton = new app.Button(300, 200, 50, 50, "Restart?");
 		stage.addChild(this.testButton);
 		
 	},

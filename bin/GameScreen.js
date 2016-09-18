@@ -19,6 +19,7 @@ app.GameScreen = {
 		for(var i = 0; i < 5; i++){
 			app.people.push(new app.NPC());
 			app.people[i].graphic.position.y += i*100;
+                        app.people[i].graphic.position.x += 10;
 		}
 		//this.npc = new app.NPC();
 		window.addEventListener("keydown", this.handleKeysDown.bind(this), true);
@@ -45,7 +46,7 @@ app.GameScreen = {
 		//console.log("Game Screen: update");
 		//Ai movement
 		for(var i = 0; i < app.people.length; i++){
-			app.people[i].moveAI(this.player.graphic.position.x, this.player.graphic.position.y, app.people);
+			app.people[i].moveAI(this.player.graphic.position.x, this.player.graphic.position.y, app.people, this.walls);
 		}
 		this.movePlayer();
 		//this.npc.graphic.position.x++;
@@ -100,6 +101,7 @@ app.GameScreen = {
         //console.log("");
         this.player.currentHealth += value;
         this.healthText.text = "100 / " + this.player.currentHealth;
+        if(this.player.currentHealth < -10000){app.Game.changeState("GAME_OVER_SCREEN");}
     },
 
     modScore: function(value){
