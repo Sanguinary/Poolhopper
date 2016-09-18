@@ -14,12 +14,7 @@ app.GameScreen = {
 		window.addEventListener("keydown", this.handleKeysDown.bind(this), true);
 		window.addEventListener("keyup", this.handleKeysUp.bind(this), true);
                 this.g = new PIXI.Rectangle(40,40,100,100);
-                /*
-                this.g.poolX = 40;
-                this.g.poolY = 40;
-                this.g.poolWidth = 10;
-                this.g.poolHeight = 100;
-                */
+            
 	},
 
 	update: function(){
