@@ -42,7 +42,7 @@ app.MainScreen = {
 
 	update: function(){		
 		//app.Game.changeState("GAME_OVER_SCREEN");
-		//app.Game.changeState("GAME_SCREEN");
+		app.Game.changeState("GAME_SCREEN");
 		console.log("MainScreen: update");
 	},
 

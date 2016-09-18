@@ -4,7 +4,7 @@ var app = app || {};
 
 app.Button = function(){
 
-	function Button(x, y, width, height, text){
+	function Button(x, y, width, height, text, stage){
 		PIXI.Graphics.call(this);
 		this.x = x;
 		this.y = y;
@@ -28,10 +28,11 @@ app.Button = function(){
 		this.position.x = this.x;
 		this.interactive = true;
 		this.buttonMode = true;
-		/*Restarting
-		this.mousedown = function(mouseData){
-			app.Game.changeState("MAIN_SCREEN");
-		}*/
+		//Restarting
+		this.mousedown = function(mouseData){			
+			for (var i = stage.children.length - 1; i >= 0; i--) {	stage.removeChild(stage.children[i]);
+                    }
+                }
 	};
 
 	Button.prototype = Object.create(PIXI.Graphics.prototype);
