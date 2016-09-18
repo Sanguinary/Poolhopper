@@ -2,6 +2,7 @@
 
 var app = app || {};
 
+
 app.GameScreen = {
 
 	init: function(stage){
@@ -12,6 +13,8 @@ app.GameScreen = {
 		this.npc = new app.NPC();
 		window.addEventListener("keydown", this.handleKeysDown.bind(this), true);
 		window.addEventListener("keyup", this.handleKeysUp.bind(this), true);
+                this.g = new PIXI.Rectangle(40,40,100,100);
+            
 	},
 
 	update: function(){
@@ -21,6 +24,10 @@ app.GameScreen = {
 		this.movePlayer();
 		this.npc.moveAI();
 		//console.log("GameScreen: update");
+                if(app.HitDetection.HIT(this.player.graphic , this.g))
+                    console.log("hit");
+                else
+                    console.log("not hit");
 	},
 
 	exit: function(){
