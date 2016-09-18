@@ -5,13 +5,15 @@ var app = app || {};
 app.Player = function(){
 
 	function Player(){
+
 		this.graphic = app.Person.makePerson(0xffeecc, 0xffeecc, stage);
 		this.speed = 5;
 		this.inWater = false;
 		this.inAir = false;
-		this.v = 0;
+		this.v = 1;
 		this.t1;
 		this.t2;
+		this.MAX = 0.3;
 	};
 
 	Player.prototype = Object.create(Player.prototype);

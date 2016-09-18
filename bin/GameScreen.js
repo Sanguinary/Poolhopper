@@ -63,22 +63,38 @@ app.GameScreen = {
 	movePlayer: function(){
 
 		if(app.Game.keyboard["W"]){
+
 			//console.log("AHHHHH");
 			this.player.graphic.position.y -= this.player.speed;
 		}else if(app.Game.keyboard["S"]){
+
 			//console.log("brrrrrr");
 			this.player.graphic.position.y += this.player.speed;
 		}
 
 		if(app.Game.keyboard["D"]){
+
 			this.player.graphic.position.x += this.player.speed;
 		}else if(app.Game.keyboard["A"]){
+
 			this.player.graphic.position.x -= this.player.speed;
 		}
 
 		//player is in air
 		if(this.player.isAir){
 
+			if(this.player.v >= this.player.MAX){
+
+				if(this.player.graphic.scale.x > 0.3){
+					this.player.graphic.scale.x = this.player.graphic.scale.y -= 0.02;
+				}else{
+					this.player.isAir = false;
+				}
+
+			}else{
+				this.player.graphic.scale.x = this.player.graphic.scale.y += 0.02;
+				this.player.v += 0.02;
+			}
       		this.player.t2++;
 			//this.player.graphic.scale.x = this.player.graphic.scale.y += this.player.v;
 		}
@@ -89,10 +105,10 @@ app.GameScreen = {
 			if(!this.player.isAir){
 
 				this.player.isAir = true;
+				this.player.v = 0;
 				this.player.t1 = this.player.t2 = 0;
 				console.log("JUMPING!");
 			}
-			this.player.graphic.scale.x = this.player.graphic.scale.y += ((this.player.t1-this.player.t2) + 40);
 		}
 	},
 
