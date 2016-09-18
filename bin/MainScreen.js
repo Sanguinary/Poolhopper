@@ -8,7 +8,8 @@ app.MainScreen = {
 		console.log("MainScreen: init");
 	},
 
-	update: function(){
+	update: function(){		
+		//app.Game.changeState("GAME_OVER_SCREEN");
 		app.Game.changeState("GAME_SCREEN");
 		console.log("MainScreen: update");
 	},

@@ -117,6 +117,6 @@ app.GameScreen = {
 		}
 		if(e.keyCode === 32){
 			app.Game.keyboard["SPACE"] = false;
-		}
+		}		
 	}
 };
