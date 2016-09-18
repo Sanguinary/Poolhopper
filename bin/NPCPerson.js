@@ -12,6 +12,16 @@ app.NPC = function(){
 	NPC.prototype.constructor = NPC;
 
 	NPC.prototype.moveAI = function(x, y, people, w){
+            
+                //check if enemy is withing aggro range
+                var d = Math.abs((x-this.graphic.position.x)) * Math.abs((x-this.graphic.position.x)) + Math.abs((y-this.graphic.position.y)) * Math.abs((y-this.graphic.position.y));
+                d = Math.sqrt(d);
+                console.log(d);
+                
+                //aggro distance
+                if(d > 250)
+                    return;
+                
                 var dx = 0;
                 var dy = 0;
 		if(this.graphic.position.x < x){
