@@ -51,6 +51,8 @@ app.GameScreen = {
 		//this.npc.graphic.position.x++;
 		//this.npc.move();
 		//console.log("GameScreen: update");
+            
+
                 if(this.poolHitCheck()){
                     console.log("hit");
                     if(!this.player.isWater){
@@ -64,6 +66,7 @@ app.GameScreen = {
                     //console.log("not hit");
                 }
 
+            if(this.player.v <= 0.20){
                 if(this.peopleHitCheck()){
                     //this.player.currentHealth -= 25;
                     console.log("Health removes: -" + 25);
@@ -73,7 +76,7 @@ app.GameScreen = {
                     console.log("not hit");
                 }*/
                 
-                if(this.wallHitCheck(this.walls) && this.player.v <= 0.20){
+                if(this.wallHitCheck(this.walls)){
                     console.log("HIT BY walls  " + this.player.v);
                     if(app.Game.keyboard["D"]){
                         this.player.graphic.position.x-=6;
@@ -86,6 +89,7 @@ app.GameScreen = {
                         this.player.graphic.position.y+=6;
                     }
                 } 
+            }
 	},
 
 	exit: function(){
