@@ -11,13 +11,13 @@ app.Person = {
 
 		//Draw the head
 		head.lineStyle(2, 0x000000);
-		head.beginFill(headColor, 0.5);
+		head.beginFill(headColor, 1.0);
 		head.drawCircle(100, 50, 30);
 		head.endFill();
 
 		//Draw the body
 		body.lineStyle(2, 0x000000);
-		body.beginFill(bodyColor, 0.5);
+		body.beginFill(bodyColor, 1);
 		body.drawEllipse(100, 50, 100, 50);
 		body.endFill();
 		body.anchor = 0.5;

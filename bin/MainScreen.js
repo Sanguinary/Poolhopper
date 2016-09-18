@@ -27,6 +27,7 @@ app.MainScreen = {
 		this.playButton = new app.Button(300, 200, 50, 50, "Play");
 		this.playButton.mousedown = function(mouseData){
 			app.Game.changeState("GAME_SCREEN");
+                        
 		}
 		stage.addChild(this.playButton);
 

@@ -304,7 +304,7 @@ app.GameScreen = {
             for(var i = 0, len = app.wallData.y_array.length; i < len ; i++){
                 for(var j = 0, len2 = app.wallData.w_array.length; j < len2; j++){
                     
-                    this.walls.push(new PIXI.Rectangle(x, app.wallData.y_array[i][j][0], app.wallData.w_array[j]),  2);
+                    this.walls.push(new PIXI.Rectangle(x, app.wallData.y_array[i][j][0], app.wallData.w_array[j]),  1);
                     x = x + app.wallData.w_array[j];
                 }
                 x = 0;
@@ -314,7 +314,7 @@ app.GameScreen = {
             var x = 0;
             for(var i = 0, len = app.wallData.y_array.length; i < len ; i++){
                 for(var j = 0, len2 = app.wallData.w_array.length; j < len2; j++){
-                    this.walls.push(new PIXI.Rectangle(x, app.wallData.y_array[i][j][0], 2, app.wallData.y_array[i][j][1]));
+                    this.walls.push(new PIXI.Rectangle(x, app.wallData.y_array[i][j][0], 1, app.wallData.y_array[i][j][1]));
                     x = x + app.wallData.w_array[j];
                 }
                 x = 0;
