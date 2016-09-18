@@ -77,8 +77,11 @@ app.GameScreen = {
             if(this.player.v <= 0.20){
                 if(this.peopleHitCheck()){
                     //this.player.currentHealth -= 25;
-                    console.log("Health removes: -" + 25);
-                    this.modHealth(-25);
+                    var r = Math.random();
+                    if(r > .91){
+                        console.log("Health removes: -" + 25);
+                        this.modHealth(-25);
+                }
                     //console.log("HIT BY PEOPLE");
                 } /*else {
                     console.log("not hit");
