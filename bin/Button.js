@@ -30,12 +30,9 @@ app.Button = function(){
 		this.buttonMode = true;
 		//Restarting
 		this.mousedown = function(mouseData){			
-			for (var i = stage.children.length - 1; i >= 0; i--) {	stage.removeChild(stage.children[i]);};
-		/*Restarting
-		this.mousedown = function(mouseData){
->>>>>>> 2cc783c3c8ae3a7ab80258ce7c87f4cf96820336
-			app.Game.changeState("MAIN_SCREEN");
-		}*/
+			for (var i = stage.children.length - 1; i >= 0; i--) {	stage.removeChild(stage.children[i]);
+                    }
+                }
 	};
 
 	Button.prototype = Object.create(PIXI.Graphics.prototype);
