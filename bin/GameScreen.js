@@ -95,6 +95,9 @@ app.GameScreen = {
         this.score += value;
         this.scoreText.text = "Score:" + this.score;
     },
+    modScore: function(){
+        console.log("");
+    },
 
 	movePlayer: function(){
 
@@ -186,11 +189,15 @@ app.GameScreen = {
 			app.Game.keyboard["SPACE"] = false;
 		}		
 	},
+		
+	
         
         poolHitCheck: function(){
             app.poolData = {
                 p_array: [
-                    [50,50,50,50],
+                    [50,450,50,50],
+                [920,50,50,50],
+                [920,450,50,50],
                 ]
             };       
             var b = false;
