@@ -14,7 +14,7 @@ function init(){
         resize();
         renderer = PIXI.autoDetectRenderer(1024, 570, {view:document.getElementById("game")} );
         renderer.backgroundColor = 0x50503E;
-        level();
+        //level();
         canvas.focus();
         app.Game.init(renderer, window, canvas, stage);
 }
@@ -36,6 +36,8 @@ function resize(){
 	}
 }
 
+//do not REMOVE
+/*
 //takes two arrays
 // the w_array is an array of column width values [w1, w2, w3, ...], y_array is 
 //3d array setup as such [[row 1], [row 2], [row3]] and the rows are arrays
@@ -127,6 +129,6 @@ function readJSONFile( filePath ){
         } );
 }
 
-
+*/
 window.addEventListener('resize', resize, false);
 window.addEventListener('orientationchange', resize, false);

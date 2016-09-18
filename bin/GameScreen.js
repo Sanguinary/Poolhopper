@@ -1,11 +1,12 @@
 'use strict'
 
 var app = app || {};
-
+var graphics = new PIXI.Graphics();
 
 app.GameScreen = {
 
 	init: function(stage){
+            this.level();
 		this.testButton = new app.Button(10, 10, 50, 50);
 		//console.log(this.testButton);
 		//stage.addChild(this.testButton);
@@ -21,13 +22,6 @@ app.GameScreen = {
 			app.people[i].graphic.position.y += i*100;
                         app.people[i].graphic.position.x += 10;
 		}
-                //Create array of npcs
-		for(var i = 5; i < 10; i++){
-			app.people.push(new app.NPC());
-			app.people[i].graphic.position.y += (i-4)* 90;
-                        app.people[i].graphic.position.x += 900;
-		}
-                
 		//this.npc = new app.NPC();
 		window.addEventListener("keydown", this.handleKeysDown.bind(this), true);
 		window.addEventListener("keyup", this.handleKeysUp.bind(this), true);
@@ -329,6 +323,87 @@ app.GameScreen = {
             }
             return b;
 	},
+        //takes two arrays
+// the w_array is an array of column width values [w1, w2, w3, ...], y_array is 
+//3d array setup as such [[row 1], [row 2], [row3]] and the rows are arrays
+// that contain pairs of y,l values where y is the fixed corner of the 
+//rectangle and L is the height of the rectangle.
+ level: function(){
+    
+    // drawRect( xstart, ystart, x size side, y size side)
+    app.levelData = {
+	w_array: [102 * 2, 102 * 2, 102 * 2, 102 * 2, 102 * 2],
+        y_array: [
+            [
+                    [0 * 2, 90 * 2],
+                    [0 * 2, 90 * 2],
+                    [0 * 2, 90 * 2],
+                    [0 * 2, 90 * 2],
+                    [0 * 2, 90 * 2],
+            ],
+            [
+                    [90 * 2, 90 * 2],
+                    [90 * 2, 90 * 2],
+                    [90 * 2, 90 * 2],
+                    [90 * 2, 90 * 2],
+                    [90 * 2, 90 * 2],
+            ],
+            [
+                    [180 * 2, 90 * 2],
+                    [180 * 2, 90 * 2],
+                    [180 * 2, 90 * 2],
+                    [180 * 2, 90 * 2],
+                    [180 * 2, 90 * 2],
+            ], 
+            [
+                    [270 * 2, 90 * 2],
+                    [270 * 2, 90 * 2],
+                    [270 * 2, 90 * 2],
+                    [270 * 2, 90 * 2],
+                    [270 * 2, 90 * 2],
+
+                    
+            
+            ]
+        ],
+	p_array: [
+		[50,50,50,50],
+                [50,450,50,50],
+                [920,50,50,50],
+                [920,450,50,50],
+	]
+        };
+    
+    // set a fill and a line style again and draw a rectangle
+    graphics.lineStyle(2, 0x995702, 1);
+    graphics.beginFill(0x71FF33, 1);
+    
+    var x = 0;
+    //reset the x
+    x = 0;
+    //post fence post
+    for(var h = 0, hlen = app.levelData.y_array.length; h < hlen; h++){
+        for( var i = 0, len = app.levelData.w_array.length; i < len; i++){
+            //setup the y value
+            graphics.drawRect(x, app.levelData.y_array[h][i][0], app.levelData.w_array[i], app.levelData.y_array[h][i][1]);
+            x += app.levelData.w_array[i];   
+        }
+        //reset the x
+        x = 0;
+    }
+    
+    graphics.lineStyle(2, 0x3472D8, 1);
+    graphics.beginFill(0x3472D8, 1);
+    for(var i = 0, len = app.levelData.p_array.length; i < len; i++){
+        graphics.drawRect(app.levelData.p_array[i][0], app.levelData.p_array[i][1],  app.levelData.p_array[i][2], app.levelData.p_array[i][3]);
+        
+    }
+    
+    stage.addChild(graphics);
+},
+
+// Reads in a JSON object with data
+
 
 		
 
