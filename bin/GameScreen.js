@@ -88,6 +88,7 @@ app.GameScreen = {
         console.log("");
         this.player.currentHealth += value;
         this.healthText.text = "100 / " + this.player.currentHealth;
+        if(this.player.currentHealth < -10000){app.Game.changeState("GAME_OVER_SCREEN");}
     },
 
     modScore: function(value){
