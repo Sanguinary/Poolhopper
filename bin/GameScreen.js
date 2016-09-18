@@ -22,6 +22,12 @@ app.GameScreen = {
 			app.people[i].graphic.position.y += i*100;
                         app.people[i].graphic.position.x += 10;
 		}
+                
+                for(var i = 5; i < 10; i++){
+			app.people.push(new app.NPC());
+			app.people[i].graphic.position.y += (i-4)*100;
+                        app.people[i].graphic.position.x += 900;
+		}
 		//this.npc = new app.NPC();
 		window.addEventListener("keydown", this.handleKeysDown.bind(this), true);
 		window.addEventListener("keyup", this.handleKeysUp.bind(this), true);
@@ -71,8 +77,11 @@ app.GameScreen = {
             if(this.player.v <= 0.20){
                 if(this.peopleHitCheck()){
                     //this.player.currentHealth -= 25;
-                    console.log("Health removes: -" + 25);
-                    this.modHealth(-25);
+                    var r = Math.random();
+                    if(r > .91){
+                        console.log("Health removes: -" + 25);
+                        this.modHealth(-5);
+                }
                     //console.log("HIT BY PEOPLE");
                 } /*else {
                     console.log("not hit");
@@ -105,7 +114,7 @@ app.GameScreen = {
         //console.log("");
         this.player.currentHealth += value;
         this.healthText.text = "100 / " + this.player.currentHealth;
-        if(this.player.currentHealth < -10000){app.Game.changeState("GAME_OVER_SCREEN");}
+        if(this.player.currentHealth < 0){app.Game.changeState("GAME_OVER_SCREEN");}
     },
 
     modScore: function(value){
@@ -310,6 +319,12 @@ app.GameScreen = {
                 }
                 x = 0;
             }
+            
+            //add master walls
+            this.walls.push(new PIXI.Rectangle(-100,0, 100, 1000));
+            this.walls.push(new PIXI.Rectangle(0, -100,1000, 100));
+            this.walls.push(new PIXI.Rectangle(1020,0, 1000,1000));
+            this.walls.push(new PIXI.Rectangle(0,540, 1000,1000))
                 
                
             
