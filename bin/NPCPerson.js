@@ -46,7 +46,7 @@ app.NPC = function(){
                         
                         if(dx < 0)
                             this.graphic.position.x++;
-                        console.log("I WAS HIT BY A WALL");
+                        //console.log("I WAS HIT BY A WALL");
                         return;
                     }
                 }
@@ -59,7 +59,7 @@ app.NPC = function(){
                             this.graphic.position.y =this.graphic.position.y - dy;
                         else
                             this.graphic.position.x = this.graphic.position.x-  dx;
-                        console.log("COLLISION OF ENEMY");
+                        //console.log("COLLISION OF ENEMY");
                     }
                 }
                 

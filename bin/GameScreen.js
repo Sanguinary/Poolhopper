@@ -19,6 +19,7 @@ app.GameScreen = {
 		for(var i = 0; i < 5; i++){
 			app.people.push(new app.NPC());
 			app.people[i].graphic.position.y += i*100;
+                        app.people[i].graphic.position.x += 10;
 		}
 		//this.npc = new app.NPC();
 		window.addEventListener("keydown", this.handleKeysDown.bind(this), true);
