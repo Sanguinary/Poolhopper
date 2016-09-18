@@ -1,9 +1,9 @@
 'use strict'
 
 //Globals will be the stage which is the parrent of all graphics, canvas object for resizing and the renderer which is pixi.js framebuffer.
-var stage = new PIXI.Container();;
+var stage = new PIXI.Container();
 var canvas = document.getElementById("game");;
-var renderer = PIXI.autoDetectRenderer(1024, 570, {view:document.getElementById("game")} );
+var renderer = PIXI.autoDetectRenderer(1024, 570, {view:document.getElementById("game")});
 var graphics = new PIXI.Graphics();
 
 // Create or grab the application

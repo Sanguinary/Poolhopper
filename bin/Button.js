@@ -15,20 +15,23 @@ app.Button = function(){
 		this.overColour = 0x00FF00;
 		this.downColour = 0x0000FF;
 
-
-		var text = new PIXI.Text(""+this.text, {font:"50px Arial", fill:"red"});
+		var text = new PIXI.Text(""+this.text, {font:"50px Arial", fill:"white"});
+		text.position.x = 10;
+		text.position.y = 20;
 		this.addChild(text);
 
 		this.lineStyle(2, 0xFF00FF, 1);
 		this.beginFill(0xFF00BB, 0.25);
-		this.drawRoundedRect(x, y, 300, 100, 15);
+		this.drawRoundedRect(0, 0, 300, 100, 15);
 		this.endFill(); 
+		this.position.y = this.y;
+		this.position.x = this.x;
 		this.interactive = true;
 		this.buttonMode = true;
-		//Restarting
+		/*Restarting
 		this.mousedown = function(mouseData){
 			app.Game.changeState("MAIN_SCREEN");
-		}
+		}*/
 	};
 
 	Button.prototype = Object.create(PIXI.Graphics.prototype);
