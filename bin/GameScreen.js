@@ -19,6 +19,7 @@ app.GameScreen = {
 		for(var i = 0; i < 5; i++){
 			app.people.push(new app.NPC());
 			app.people[i].graphic.position.y += i*100;
+                        app.people[i].graphic.position.x += 10;
 		}
 		//this.npc = new app.NPC();
 		window.addEventListener("keydown", this.handleKeysDown.bind(this), true);
@@ -31,7 +32,7 @@ app.GameScreen = {
         this.score = 0;
         this.scoreText = new PIXI.Text("Score:" + this.score, {font:"50px Arial", fill:"red"});
         this.scoreText.position.y = 20;
-        this.scoreText.position.x = 30
+        this.scoreText.position.x = 30;
         stage.addChild(this.scoreText);
 
         this.healthText = new PIXI.Text("100 / " + this.player.currentHealth, {font:"50px Arial", fill:"red"});
@@ -45,18 +46,18 @@ app.GameScreen = {
 		//console.log("Game Screen: update");
 		//Ai movement
 		for(var i = 0; i < app.people.length; i++){
-			app.people[i].moveAI(this.player.graphic.position.x, this.player.graphic.position.y);
+			app.people[i].moveAI(this.player.graphic.position.x, this.player.graphic.position.y, app.people, this.walls);
 		}
 		this.movePlayer();
 		//this.npc.graphic.position.x++;
 		//this.npc.move();
 		//console.log("GameScreen: update");
                 if(this.poolHitCheck()){
-                    //console.log("hit");
+                    console.log("hit");
                     if(!this.player.isWater){
                         this.player.isWater = true;
                     }
-                    this.modScore(28);
+                    this.modScore(20);
                 }else{
                     if(this.player.isWater){
                         this.player.isWater = false;
@@ -71,13 +72,21 @@ app.GameScreen = {
                     //console.log("HIT BY PEOPLE");
                 } /*else {
                     console.log("not hit");
-                }
-                
-                if(this.wallHitCheck(this.walls)){
-                    console.log("HIT BY walls");
-                } else {
-                    //console.log("not hit");
                 }*/
+                
+                if(this.wallHitCheck(this.walls) && this.player.v <= 0.20){
+                    console.log("HIT BY walls  " + this.player.v);
+                    if(app.Game.keyboard["D"]){
+                        this.player.graphic.position.x-=6;
+                    } else if(app.Game.keyboard["A"]){
+                        this.player.graphic.position.x+=6;
+                    }
+                    if(app.Game.keyboard["S"]){
+                        this.player.graphic.position.y-=6;
+                    }else if(app.Game.keyboard["W"]){
+                        this.player.graphic.position.y+=6;
+                    }
+                } 
 	},
 
 	exit: function(){
@@ -85,19 +94,16 @@ app.GameScreen = {
 	},
 	
     modHealth: function(value){
-        console.log("");
+        //console.log("");
         this.player.currentHealth += value;
         this.healthText.text = "100 / " + this.player.currentHealth;
         if(this.player.currentHealth < -10000){app.Game.changeState("GAME_OVER_SCREEN");}
     },
 
     modScore: function(value){
-        console.log("");
+        //console.log("");
         this.score += value;
         this.scoreText.text = "Score:" + this.score;
-    },
-    modScore: function(){
-        console.log("");
     },
 
 	movePlayer: function(){
@@ -120,18 +126,28 @@ app.GameScreen = {
 			this.player.graphic.position.x -= this.player.speed;
 		}
 
+        if(this.player.inWater){
+            this.player.speed = 2;
+        }else{
+            this.player.speed = 4;
+        }
+
 		//player is in air
 		if(this.player.isAir){
 
 			if(this.player.v >= this.player.MAX){
 
 				if(this.player.graphic.scale.x > 0.3){
+                    //he hit critical point
 					this.player.graphic.scale.x = this.player.graphic.scale.y -= 0.02;
 				}else{
+                    //He has landed
 					this.player.isAir = false;
+                    this.player.v = 0;
 				}
 
 			}else{
+                //rising action of jump.
 				this.player.graphic.scale.x = this.player.graphic.scale.y += 0.02;
 				this.player.v += 0.02;
 			}
@@ -145,7 +161,7 @@ app.GameScreen = {
 			if(!this.player.isAir){
 
 				this.player.isAir = true;
-				this.player.v = 0;
+				//this.player.v = 0;
 				this.player.t1 = this.player.t2 = 0;
 				//console.log("JUMPING!");
 			}
@@ -196,9 +212,10 @@ app.GameScreen = {
         poolHitCheck: function(){
             app.poolData = {
                 p_array: [
+                    [50,50,50,50],
                     [50,450,50,50],
-                [920,50,50,50],
-                [920,450,50,50],
+                    [920,50,50,50],
+                    [920,450,50,50],
                 ]
             };       
             var b = false;
