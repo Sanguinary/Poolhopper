@@ -80,7 +80,7 @@ app.GameScreen = {
                     var r = Math.random();
                     if(r > .91){
                         console.log("Health removes: -" + 25);
-                        this.modHealth(-25);
+                        this.modHealth(-5);
                 }
                     //console.log("HIT BY PEOPLE");
                 } /*else {
@@ -114,7 +114,7 @@ app.GameScreen = {
         //console.log("");
         this.player.currentHealth += value;
         this.healthText.text = "100 / " + this.player.currentHealth;
-        if(this.player.currentHealth < -10000){app.Game.changeState("GAME_OVER_SCREEN");}
+        if(this.player.currentHealth < 0){app.Game.changeState("GAME_OVER_SCREEN");}
     },
 
     modScore: function(value){
@@ -316,6 +316,12 @@ app.GameScreen = {
                 }
                 x = 0;
             }
+            
+            //add master walls
+            this.walls.push(new PIXI.Rectangle(-100,0, 100, 1000));
+            this.walls.push(new PIXI.Rectangle(0, -100,1000, 100));
+            this.walls.push(new PIXI.Rectangle(1020,0, 1000,1000));
+            this.walls.push(new PIXI.Rectangle(0,540, 1000,1000))
                 
                
             
