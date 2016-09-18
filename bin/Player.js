@@ -8,7 +8,11 @@ app.Player = function(){
 
 		this.health = 100;
 		this.currentHealth = 100;
+<<<<<<< HEAD
 		this.graphic = app.Person.makePerson(0x900101, 0xFE0000, stage);
+=======
+		this.graphic = app.Person.makePerson(0x00ffff, 0xff0000, stage);
+>>>>>>> 518e7c345fb25320a7da4dbdc30cfd2e7130880a
 		this.speed = 4;
 		this.inWater = false;
 		this.inAir = false;

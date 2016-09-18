@@ -11,7 +11,11 @@ app.Person = {
 
 		//Draw the head
 		head.lineStyle(2, 0x000000);
+<<<<<<< HEAD
 		head.beginFill(headColor, 1.0);
+=======
+		head.beginFill(headColor, 1);
+>>>>>>> 518e7c345fb25320a7da4dbdc30cfd2e7130880a
 		head.drawCircle(100, 50, 30);
 		head.endFill();
 
@@ -28,6 +32,7 @@ app.Person = {
 		//this.personCon.anchor.y = 0.5;
 		this.personCon.scale.x = this.personCon.scale.y = 0.28;
 		stage.addChild(this.personCon);
+		
 
 		return this.personCon;
 	}
