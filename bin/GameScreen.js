@@ -66,7 +66,7 @@ app.GameScreen = {
 				this.player.t1 = this.player.t2 = 0;
 				console.log("JUMPING!");
 			}
-			this.player.graphic.scale.x = this.player.graphic.scale.y += ((this.player.t1-this.player.t2) + 40);
+			this.player.graphic.scale.x = this.player.graphic.scale.y += ((this.player.t1-this.player.t2) + 40)/1;
 		}
 	},
 
