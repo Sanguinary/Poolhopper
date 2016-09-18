@@ -6,7 +6,6 @@ var canvas = document.getElementById("game");;
 var renderer = PIXI.autoDetectRenderer(1024, 570, {view:document.getElementById("game")} );
 var graphics = new PIXI.Graphics();
 
-//makePerson();
 // Create or grab the application
 var app = app || {};
 

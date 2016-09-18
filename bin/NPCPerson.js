@@ -1,26 +1,3 @@
-/*'use strict'
-
-var app = app || {};
-
-app.NPCPerson = function(){
-
-	function NPCPerson(){
-		this.graphic = app.Person.makePerson(0x00ff00, 0x00ff00, stage);
-	};
-
-	NPCPerson.prototype = Object.prototype;
-	NPCPerson.prototype.constructor = NPCPerson;
-	var p = NPCPerson.prototype;
-
-	p.move = function(){
-
-		//this.graphic.position.x+=1;
-		console.log("MOVING!");
-	};
-
-	return NPCPerson;
-}();*/
-
 'use strict'
 
 var app = app || {};
@@ -34,8 +11,12 @@ app.NPC = function(){
 	NPC.prototype = Object.create(NPC.prototype);
 	NPC.prototype.constructor = NPC;
 
-	NPC.prototype.moveAI = function(){
-		this.graphic.position.x++;
+	NPC.prototype.moveAI = function(x, y){
+		if(this.graphic.position.x < x){this.graphic.position.x++;}
+		else{this.graphic.position.x--}
+
+		if(this.graphic.position.y < y){this.graphic.position.y++;}
+		else{this.graphic.position.y--}
 	}
 
 	return NPC;
