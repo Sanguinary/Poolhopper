@@ -16,7 +16,7 @@ app.NPC = function(){
                 //check if enemy is withing aggro range
                 var d = Math.abs((x-this.graphic.position.x)) * Math.abs((x-this.graphic.position.x)) + Math.abs((y-this.graphic.position.y)) * Math.abs((y-this.graphic.position.y));
                 d = Math.sqrt(d);
-                console.log(d);
+                //console.log(d);
                 
                 //aggro distance
                 if(d > 250)

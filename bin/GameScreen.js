@@ -55,7 +55,7 @@ app.GameScreen = {
             
 
                 if(this.poolHitCheck()){
-                    console.log("hit");
+                    //console.log("hit");
                     if(!this.player.isWater){
                         this.player.isWater = true;
                     }
@@ -94,6 +94,9 @@ app.GameScreen = {
 	},
 
 	exit: function(){
+        for (var i = stage.children.length - 1; i >= 0; i--) {  
+            stage.removeChild(stage.children[i]);
+        }
 		console.log("GameScreen: exit");
 	},
 	

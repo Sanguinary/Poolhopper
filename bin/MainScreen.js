@@ -42,11 +42,15 @@ app.MainScreen = {
 
 	update: function(){		
 		//app.Game.changeState("GAME_OVER_SCREEN");
-		app.Game.changeState("GAME_SCREEN");
-		console.log("MainScreen: update");
+		//app.Game.changeState("GAME_SCREEN");
+		//console.log("MainScreen: update");
 	},
 
 	exit: function(){
+		for (var i = stage.children.length - 1; i >= 0; i--) {	
+			stage.removeChild(stage.children[i]);
+        }
+         
 		console.log("MainScreen: exit");
 	}
 };
