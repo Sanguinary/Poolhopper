@@ -14,6 +14,10 @@ app.GameScreen = {
         this.player.graphic.position.x = 300;
         this.player.graphic.position.y = 300;
 
+        // Temp player is basically a cheapo hitbox.
+        this.tempPlayer = new app.Player();
+        stage.removeChild(this.tempPlayer.graphic);
+
 		app.people = [];
 
 		//Create array of npcs
@@ -97,20 +101,20 @@ app.GameScreen = {
                     }
                     //console.log("HIT BY PEOPLE");
                 } 
-                
+                /*  Moving insdie player movement so as not to allow floating through walls.
                 if(this.wallHitCheck(this.walls)){
                     console.log("HIT BY walls  " + this.player.v);
                     if(app.Game.keyboard["D"]){
-                        this.player.graphic.position.x-=6;
+                        this.player.graphic.position.x-=2;
                     } else if(app.Game.keyboard["A"]){
-                        this.player.graphic.position.x+=6;
+                        this.player.graphic.position.x+=2;
                     }
                     if(app.Game.keyboard["S"]){
-                        this.player.graphic.position.y-=6;
+                        this.player.graphic.position.y-=2;
                     }else if(app.Game.keyboard["W"]){
-                        this.player.graphic.position.y+=6;
+                        this.player.graphic.position.y+=2;
                     }
-                } 
+                } */
             }
 	},
 
@@ -136,54 +140,95 @@ app.GameScreen = {
 
 	movePlayer: function(){
 
+
+        //var tempPlayer = new app.Player();
+        this.tempPlayer.graphic.position.x = this.player.graphic.position.x;
+        this.tempPlayer.graphic.position.y = this.player.graphic.position.y;
+
 		if(app.Game.keyboard["W"]){
+            if(this.player.inWater){
+                this.player.graphic.position.y -= this.player.waterSpeed; 
+            }else{
+                this.tempPlayer.graphic.position.y -= this.player.speed;
+                //Going to do collisions inside here, by seeing if move would place him in collision and if so he cannot go.
+                if(!this.wallHitCheck(this.walls, this.tempPlayer) || this.player.v > 0.19){
+                    this.player.graphic.position.y -= this.player.speed + 1;
+                }else{
+                    //this.tempPlayer.graphic.position.y += this.player.speed;
+                }
+            }
+
+		} 
+
+        if(app.Game.keyboard["S"]){
 
             if(this.player.inWater){
-                this.player.graphic.position.y -= 2.8; 
+                this.player.graphic.position.y += this.player.waterSpeed; 
             }else{
-			//console.log("AHHHHH");
-    			this.player.graphic.position.y -= this.player.speed;
-            }
-		}else if(app.Game.keyboard["S"]){
-
-            if(this.player.inWater){
-                this.player.graphic.position.y += 2.8; 
-            }else{
-			//console.log("brrrrrr");
-	   		    this.player.graphic.position.y += this.player.speed;
-            }
-		}
-		if(app.Game.keyboard["D"]){
-
-            if(this.player.inWater){
-                this.player.graphic.position.x += 2.8; 
-            }else{
-    			this.player.graphic.position.x += this.player.speed;
-            }
-            //console.log(this.player.speed);
-		}else if(app.Game.keyboard["A"]){
-            if(this.player.inWater){
-                this.player.graphic.position.x -= 2.8; 
-            }else{
-    			this.player.graphic.position.x -= this.player.speed;
+                this.tempPlayer.graphic.position.y += this.player.speed;
+                //Going to do collisions inside here, by seeing if move would place him in collision and if so he cannot go.
+                if(!this.wallHitCheck(this.walls, this.tempPlayer) || this.player.v > 0.19){
+                    this.player.graphic.position.y += this.player.speed + 1;
+                }else{
+                    //this.tempPlayer.graphic.position.y -= this.player.speed;
+                }
             }
 		}
 
-        if(this.player.inWater){
+        if(app.Game.keyboard["D"]){
+            if(this.player.inWater){
+                this.player.graphic.position.x += this.player.waterSpeed; 
+            }else{
+                this.tempPlayer.graphic.position.x += this.player.speed + 1;
+                //Going to do collisions inside here, by seeing if move would place him in collision and if so he cannot go.
+                if(!this.wallHitCheck(this.walls, this.tempPlayer) || this.player.v > 0.19){
+                    this.player.graphic.position.x += this.player.speed;
+                }else{
+                    //this.tempPlayer.graphic.position.x -= this.player.speed;
+                }
+            }
+        }
+
+        if(app.Game.keyboard["A"]){
+            if(this.player.inWater){
+                this.player.graphic.position.x -= this.player.waterSpeed; 
+            }else{
+                this.tempPlayer.graphic.position.x -= this.player.speed + 1;
+                //Going to do collisions inside here, by seeing if move would place him in collision and if so he cannot go.
+                if(!this.wallHitCheck(this.walls, this.tempPlayer) || this.player.v > 0.19){
+                    this.player.graphic.position.x -= this.player.speed;
+                }else{
+                    //this.tempPlayer.graphic.position.x += this.player.speed;
+                }
+            }
+		}
+
+        // Now we check the eight directions of rotation for the character and update. Can cheat because player's direction is a bit ambigous
+        if((app.Game.keyboard["D"] && app.Game.keyboard["W"]) || (app.Game.keyboard["A"] && app.Game.keyboard["S"])){
+            this.player.graphic.rotation = Math.PI * 2 * 0.10;
+        }else if( (app.Game.keyboard["D"] && app.Game.keyboard["S"]) || (app.Game.keyboard["A"] && app.Game.keyboard["W"])){
+            this.player.graphic.rotation = Math.PI * 2 * 0.35;
+        }else if(app.Game.keyboard["D"] || app.Game.keyboard["A"]){
+            this.player.graphic.rotation = Math.PI * 2 * 0.25;
+        }else if(app.Game.keyboard["S"] || app.Game.keyboard["W"]){
+            this.player.graphic.rotation = Math.PI * 2 * 0.0;
+        }
+
+        /*if(this.player.inWater){
             console.log("water: " + this.player.inWater);
             this.player.speed = 1.5;
         }else{
             this.player.speed = 4;
-        }
+        }*/
 
 		//player is in air
 		if(this.player.isAir){
 
 			if(this.player.v >= this.player.MAX){
 
-				if(this.player.graphic.scale.x > 0.3){
+				if(this.player.graphic.scale.x > 0.12){
                     //he hit critical point
-					this.player.graphic.scale.x = this.player.graphic.scale.y -= 0.02;
+					this.player.graphic.scale.x = this.player.graphic.scale.y -= 0.01;
 				}else{
                     //He has landed
 					this.player.isAir = false;
@@ -191,7 +236,7 @@ app.GameScreen = {
 				}
 			}else{
                 //rising action of jump.
-				this.player.graphic.scale.x = this.player.graphic.scale.y += 0.02;
+				this.player.graphic.scale.x = this.player.graphic.scale.y += 0.01;
 				this.player.v += 0.02;
 			}
       		this.player.t2++;
@@ -316,8 +361,6 @@ app.GameScreen = {
                             [270 * 2, 90 * 2],
                             [270 * 2, 90 * 2],
 
-
-
                     ]
                 ],
             
@@ -351,12 +394,22 @@ app.GameScreen = {
             this.walls.push(new PIXI.Rectangle(0, -100,1000, 100));
             this.walls.push(new PIXI.Rectangle(1020,0, 1000,1000));
             this.walls.push(new PIXI.Rectangle(0,540, 1000,1000))
-                
-               
-            
             
         },
         
+
+        wallHitCheck: function(theWalls, thePlayer){
+            var b = false;
+            
+            for(var i = 0, len = theWalls.length; i < len; i++){
+                //console.log(this.walls);
+               if(app.HitDetection.HIT(thePlayer.graphic.body, theWalls[i]))
+                   return true;
+            }
+            return b;
+        },
+
+
         wallHitCheck: function(theWalls){
             var b = false;
             
@@ -366,7 +419,7 @@ app.GameScreen = {
                    return true;
             }
             return b;
-	},
+	   },
         //takes two arrays
 // the w_array is an array of column width values [w1, w2, w3, ...], y_array is 
 //3d array setup as such [[row 1], [row 2], [row3]] and the rows are arrays

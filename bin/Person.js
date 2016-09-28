@@ -21,13 +21,11 @@ app.Person = {
 		body.beginFill(bodyColor, 1);
 		body.drawEllipse(100, 50, 100, 50);
 		body.endFill();
-		body.anchor = 0.5;
 
 		this.personCon.addChild(body);
 		this.personCon.addChild(head);
-		//this.personCon.anchor.x = 0.5;
-		//this.personCon.anchor.y = 0.5;
-		this.personCon.scale.x = this.personCon.scale.y = 0.29;
+		this.personCon.pivot = new PIXI.Point(100, 50);
+		this.personCon.scale.x = this.personCon.scale.y = 0.12;
 		stage.addChild(this.personCon);
 		
 
